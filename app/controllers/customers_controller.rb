@@ -19,7 +19,7 @@ class CustomersController < ApplicationController
   
     if @customer.save
       redirect_to "/"
-      flash[:notice] = "Thanks for submitting these questions"
+     
     else
       render 'new'
     end

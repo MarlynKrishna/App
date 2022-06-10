@@ -1,0 +1,439 @@
+<body class="loading bg-info">
+    <%= render "partials/navbar"%>
+
+    <%= render "partials/sidebar"%>
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <%# <div class="container-fluid"> %>
+
+                <!-- start page title -->
+                
+
+                <div class="row">
+                    <div class="col-md-5 col-xl-5">
+                        <div class="card" id="tooltip-container">
+                            <div class="container">
+                                <h3>STOCK LIST</h3>
+
+
+                                <table class="table table-bordered" ,border="3">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% @products.each do |product| %>
+                                        <tr>
+                                            <td><%= product.name %></td>
+                                            <td><%= product.price %></td>
+                                            <td><%= truncate(product.short_description, :length => 75) %></td>
+                                            <div>
+                                                <td>
+                                                    <%= link_to 'Show', product_path(product) %>
+                                                    <%= link_to 'Edit', edit_product_path(product) %>
+                                                    <%= link_to 'Delete', product_path(product.id), data: { turbo_method: :delete } %>
+                                                    <%# <%= button_to 'Delete',  product_path(product),  method: :delete %>
+
+                                                </td>
+
+                                        </tr>
+                                        <% end %>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-5">
+                        <div class="card" id="tooltip-container1">
+                            <h5>Customer_details</h5>
+
+                            <table class="table table-bordered" , border="3">
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th scope="col">Name</th>
+
+                                        <th scope="col">phone_num</th>
+
+                                        <th scope="col">state</th>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                    <% @customers.each do |e| %>
+
+                                    <tr>
+
+                                        <td><%= e.name %></td>
+
+                                        <td><%= e.phone_num%></td>
+                                        <td><%= e.state%></td>
+                                    </tr>
+
+                                    <% end %>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-xl-5  ">
+                        <div class="card" id="tooltip-container1">
+                            <h5>Weather Report</h5>
+                            <%= @query%>
+                            <p class="text-primary"> WindSpeed: <%= @WindSpeed %> </p>
+                            <p class="text-primary"> Precip: <%= @Precip %> </p>
+                            <p class="text-primary"> Pressure: <%= @Pressure %></p>
+                            <p class="text-primary"> Humidity: <%= @Humidity %> </p>
+                            <p class="text-primary">Visibility: <%= @Visibility %> </p>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-6 col-xl-3">
+                        <div class="card" id="tooltip-container2">
+                            <div class="card-body">
+                                <i class="fa fa-info-circle text-muted float-end"
+                                    data-bs-container="#tooltip-container2" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="More Info"></i>
+                                <h4 class="mt-0 font-16">Recent Users</h4>
+                                <h2 class="text-primary my-3 text-center"><span data-plugin="counterup">3.2</span>M</h2>
+                                <p class="text-muted mb-0">Total users: 121 M <span class="float-end"><i
+                                            class="fa fa-caret-up text-success me-1"></i>3.64%</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-3">
+                        <div class="card" id="tooltip-container3">
+                            <div class="card-body">
+                                <i class="fa fa-info-circle text-muted float-end"
+                                    data-bs-container="#tooltip-container3" data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom" title="More Info"></i>
+                                <h4 class="mt-0 font-16">Total Revenue</h4>
+                                <h2 class="text-primary my-3 text-center">$<span data-plugin="counterup">68,541</span>
+                                </h2>
+                                <p class="text-muted mb-0">Total revenue: $1.2 M <span class="float-end"><i
+                                            class="fa fa-caret-up text-success me-1"></i>17.48%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+                <div class="row">
+                    <!-- INBOX -->
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="dropdown float-end">
+                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="mdi mdi-dots-vertical"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Settings</a>
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                    </div>
+                                </div>
+                                <h4 class="header-title mb-3">Inbox</h4>
+
+                                <div class="inbox-widget" data-simplebar style="max-height: 407px;">
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="../assets/images/users/user-2.jpg"
+                                                class="rounded-circle" alt=""></div>
+                                        <p class="inbox-item-author">Tomaslau</p>
+                                        <p class="inbox-item-text">I've finished it! See you so...</p>
+                                        <p class="inbox-item-date">
+                                            <a href="javascript:(0);" class="btn btn-sm btn-link text-info font-13">
+                                                Reply
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="../assets/images/users/user-3.jpg"
+                                                class="rounded-circle" alt=""></div>
+                                        <p class="inbox-item-author">Stillnotdavid</p>
+                                        <p class="inbox-item-text">This theme is awesome!</p>
+                                        <p class="inbox-item-date">
+                                            <a href="javascript:(0);" class="btn btn-sm btn-link text-info font-13">
+                                                Reply
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="../assets/images/users/user-4.jpg"
+                                                class="rounded-circle" alt=""></div>
+                                        <p class="inbox-item-author">Kurafire</p>
+                                        <p class="inbox-item-text">Nice to meet you</p>
+                                        <p class="inbox-item-date">
+                                            <a href="javascript:(0);" class="btn btn-sm btn-link text-info font-13">
+                                                Reply
+                                            </a>
+                                        </p>
+                                    </div>
+
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="../assets/images/users/user-5.jpg"
+                                                class="rounded-circle" alt=""></div>
+                                        <p class="inbox-item-author">Shahedk</p>
+                                        <p class="inbox-item-text">Hey! there I'm available...</p>
+                                        <p class="inbox-item-date">
+                                            <a href="javascript:(0);" class="btn btn-sm btn-link text-info font-13">
+                                                Reply
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="../assets/images/users/user-6.jpg"
+                                                class="rounded-circle" alt=""></div>
+                                        <p class="inbox-item-author">Adhamdannaway</p>
+                                        <p class="inbox-item-text">This theme is awesome!</p>
+                                        <p class="inbox-item-date">
+                                            <a href="javascript:(0);" class="btn btn-sm btn-link text-info font-13">
+                                                Reply
+                                            </a>
+                                        </p>
+                                    </div>
+
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="../assets/images/users/user-3.jpg"
+                                                class="rounded-circle" alt=""></div>
+                                        <p class="inbox-item-author">Stillnotdavid</p>
+                                        <p class="inbox-item-text">This theme is awesome!</p>
+                                        <p class="inbox-item-date">
+                                            <a href="javascript:(0);" class="btn btn-sm btn-link text-info font-13">
+                                                Reply
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="inbox-item">
+                                        <div class="inbox-item-img"><img src="../assets/images/users/user-4.jpg"
+                                                class="rounded-circle" alt=""></div>
+                                        <p class="inbox-item-author">Kurafire</p>
+                                        <p class="inbox-item-text">Nice to meet you</p>
+                                        <p class="inbox-item-date">
+                                            <a href="javascript:(0);" class="btn btn-sm btn-link text-info font-13">
+                                                Reply
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div> <!-- end inbox-widget -->
+                            </div>
+                        </div> <!-- end card -->
+                    </div> <!-- end col -->
+
+                    <!-- Todos app -->
+                    <div class="col-xl-4 col-lg-6">
+                        <!-- Todo-->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="dropdown float-end">
+                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="mdi mdi-dots-vertical"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Settings</a>
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                    </div>
+                                </div>
+                                <h4 class="header-title mb-3">Todo</h4>
+
+                                <div class="todoapp">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 id="todo-message"><span id="todo-remaining"></span> of <span
+                                                    id="todo-total"></span> remaining</h5>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a href="" class="float-end btn btn-light btn-sm"
+                                                id="btn-archive">Archive</a>
+                                        </div>
+                                    </div>
+
+                                    <div style="max-height: 310px;" data-simplebar>
+                                        <ul class="list-group list-group-flush todo-list" id="todo-list"></ul>
+                                    </div>
+
+                                    <form name="todo-form" id="todo-form" class="needs-validation mt-3" novalidate>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="text" id="todo-input-text" name="todo-input-text"
+                                                    class="form-control" placeholder="Add new todo" required>
+                                                <div class="invalid-feedback">
+                                                    Please enter your task name
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn-primary btn-md btn waves-effect waves-light w-100"
+                                                    type="submit" id="todo-btn-submit">Add</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> <!-- end .todoapp-->
+
+                            </div> <!-- end card-body -->
+                        </div> <!-- end card-->
+                    </div> <!-- end col -->
+
+                    <!-- CHAT -->
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="dropdown float-end">
+                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="mdi mdi-dots-vertical"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Settings</a>
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                    </div>
+                                </div>
+                                <h4 class="header-title mb-3">Chat</h4>
+
+                                <div class="chat-conversation">
+                                    <div data-simplebar style="height: 370px;">
+                                        <ul class="conversation-list">
+                                            <li class="clearfix">
+                                                <div class="chat-avatar">
+                                                    <img src="../assets/images/users/user-5.jpg" alt="male">
+                                                    <i>10:00</i>
+                                                </div>
+                                                <div class="conversation-text">
+                                                    <div class="ctext-wrap">
+                                                        <i>Geneva</i>
+                                                        <p>
+                                                            Hello!
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix odd">
+                                                <div class="chat-avatar">
+                                                    <img src="../assets/images/users/user-1.jpg" alt="Female">
+                                                    <i>10:01</i>
+                                                </div>
+                                                <div class="conversation-text">
+                                                    <div class="ctext-wrap">
+                                                        <i>Dominic</i>
+                                                        <p>
+                                                            Hi, How are you? What about our next meeting?
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix">
+                                                <div class="chat-avatar">
+                                                    <img src="../assets/images/users/user-5.jpg" alt="male">
+                                                    <i>10:01</i>
+                                                </div>
+                                                <div class="conversation-text">
+                                                    <div class="ctext-wrap">
+                                                        <i>Geneva</i>
+                                                        <p>
+                                                            Yeah everything is fine
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="clearfix odd">
+                                                <div class="chat-avatar">
+                                                    <img src="../assets/images/users/user-1.jpg" alt="male">
+                                                    <i>10:02</i>
+                                                </div>
+                                                <div class="conversation-text">
+                                                    <div class="ctext-wrap">
+                                                        <i>Dominic</i>
+                                                        <p>
+                                                            Wow that's great
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <form class="needs-validation" novalidate name="chat-form" id="chat-form">
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="text" class="form-control chat-input"
+                                                    placeholder="Enter your text" required>
+                                                <div class="invalid-feedback">
+                                                    Please enter your messsage
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="submit"
+                                                    class="btn btn-danger chat-send waves-effect waves-light w-100">Send</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div> <!-- end .chat-conversation-->
+                            </div>
+                        </div> <!-- end card-->
+                    </div> <!-- end col-->
+                </div> <!-- end row -->
+
+            </div> <!-- container -->
+
+        <%# </div> <!-- content --> %>
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script> &copy; UBold theme by <a href="">Coderthemes</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-end footer-links d-none d-sm-block">
+                            <a href="javascript:void(0);">About Us</a>
+                            <a href="javascript:void(0);">Help</a>
+                            <a href="javascript:void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+
+
+
+</body>

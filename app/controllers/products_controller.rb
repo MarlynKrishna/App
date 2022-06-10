@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
       @product = Product.new(product_params)
       if @product.save
         redirect_to "/"
-        flash[:notice] = "Thanks for submitting these questions"
+        flash[:notice] = "added successfully"
       else
         render 'new'
       end
